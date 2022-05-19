@@ -4,14 +4,19 @@
   "version": "1.0.0",
   "main": "./src/service/service.js",
   "devDependencies": {},
+  "version": "1.0.0",
+  "description": "Типотека",
+  "main": "./src/service/service.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run eslint",
+    "eslint": "eslint --ext .js src/",
+    "start": "node ./src/service/service.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ViktorVinokurov/1659653-typoteka-3.git"
   },
-  "author": "vinokurov viktor",
+  "author": "Vinokurov Viktor",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ViktorVinokurov/1659653-typoteka-3/issues"
@@ -19,5 +24,9 @@
   "homepage": "https://github.com/ViktorVinokurov/1659653-typoteka-3#readme",
   "dependencies": {
     "chalk": "4.1.2"
+  }
+  "devDependencies": {
+    "eslint": "8.14.0",
+    "eslint-config-htmlacademy": "0.6.0"
   }
 }
