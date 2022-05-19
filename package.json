@@ -1,0 +1,23 @@
+{
+  "name": "typoteka",
+  "description": "* Студент: [Виктор Винокуров](https://up.htmlacademy.ru/nodejs/3/user/1659653). * Наставник: `Неизвестно`.",
+  "version": "1.0.0",
+  "main": "./src/service/service.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ViktorVinokurov/1659653-typoteka-3.git"
+  },
+  "author": "vinokurov viktor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ViktorVinokurov/1659653-typoteka-3/issues"
+  },
+  "homepage": "https://github.com/ViktorVinokurov/1659653-typoteka-3#readme",
+  "dependencies": {
+    "chalk": "4.1.2"
+  }
+}
