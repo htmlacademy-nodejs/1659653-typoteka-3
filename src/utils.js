@@ -5,12 +5,12 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 const shuffle = (someArray) => {
-  for (let i = someArray.length - 1; i > 0; i--) {
-    const randomPosition = Math.floor(Math.random() * i);
-    [someArray[i], someArray[randomPosition]] = [someArray[randomPosition], someArray[i]];
+  const array = [...someArray];
+  for (let i = array.length - 1; i > 0; i--) {
+    const randomPosition = getRandomInt(0, i);
+    [array[i], array[randomPosition]] = [array[randomPosition], array[i]];
   }
-
-  return someArray;
+  return array;
 };
 
 module.exports = {
