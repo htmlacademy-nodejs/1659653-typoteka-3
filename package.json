@@ -1,7 +1,7 @@
 {
   "name": "typoteka",
+  "description": "* Студент: [Виктор Винокуров](https://up.htmlacademy.ru/nodejs/3/user/1659653). * Наставник: `Неизвестно`.",
   "version": "1.0.0",
-  "description": "Типотека",
   "main": "./src/service/service.js",
   "scripts": {
     "test": "npm run eslint",
@@ -18,8 +18,10 @@
     "url": "https://github.com/ViktorVinokurov/1659653-typoteka-3/issues"
   },
   "homepage": "https://github.com/ViktorVinokurov/1659653-typoteka-3#readme",
+  "dependencies": {
+    "chalk": "4.1.2"
+  }
   "devDependencies": {
-    "chalk": "4.1.2",
     "eslint": "8.14.0",
     "eslint-config-htmlacademy": "0.6.0"
   }
