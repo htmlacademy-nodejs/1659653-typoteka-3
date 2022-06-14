@@ -2,9 +2,12 @@
 const { getRandomInt, shuffle } = require('../../utils');
 const fs = require(`fs`).promises;
 const chalk = require('chalk');
-const FILE_SENTENCES_PATH = `./data/sentences.txt`;
-const FILE_TITLES_PATH = `./data/titles.txt`;
-const FILE_CATEGORIES_PATH = `./data/categories.txt`;
+const {
+  ExitCode
+} = require(`../../constants`);
+const FILE_SENTENCES_PATH = `../../data/sentences.txt`;
+const FILE_TITLES_PATH = `../../data/titles.txt`;
+const FILE_CATEGORIES_PATH = `../../data/categories.txt`;
 
 const DEFAULT_COUNT = 1;
 const DEFAULT_COMMAND = '--version';
@@ -93,14 +96,13 @@ module.exports = {
       try {
         await fs.writeFile(FILE_NAME, content);
         console.info(chalk.green(`Operation success. File created.`));
-        process.exit(0);
       } catch (err) {
         console.error(chalk.red(`Can't write data to file...`));
-        process.exit(1);
+        process.exit(ExitCode.error);
       }
     } else {
       console.error(chalk.red(`Не больше 1000 публикаций`));
-      process.exit(1);
+      process.exit(ExitCode.error);
     }
   }
 };
