@@ -2,9 +2,12 @@
 const { getRandomInt, shuffle } = require('../../utils');
 const fs = require(`fs`).promises;
 const chalk = require('chalk');
-const FILE_SENTENCES_PATH = `./data/sentences.txt`;
-const FILE_TITLES_PATH = `./data/titles.txt`;
-const FILE_CATEGORIES_PATH = `./data/categories.txt`;
+const {
+  ExitCode
+} = require(`../../constants`);
+const FILE_SENTENCES_PATH = `../../data/sentences.txt`;
+const FILE_TITLES_PATH = `../../data/titles.txt`;
+const FILE_CATEGORIES_PATH = `../../data/categories.txt`;
 
 const DEFAULT_COUNT = 1;
 const DEFAULT_COMMAND = '--version';
@@ -55,7 +58,7 @@ const PictureRestrict = {
   MIN: 1,
   MAX: 16,
 };
-const getPictureFileName = (number) => `item${number.toString().padStart(2, 0)}.jpg`;
+const getPictureFileName = (number) => `item${ number.toString().padStart(2, 0) }.jpg`;
 const readContent = async (filePath) => {
   try {
     const content = await fs.readFile(filePath, 'utf-8');
@@ -68,11 +71,14 @@ const readContent = async (filePath) => {
 
 const generateOffers = (count, titles, categories, sentences) => (
   Array(count).fill({}).map(() => ({
-    category: [categories[getRandomInt(0, categories.length - 1)]],
+    category: [...new Set(Array(getRandomInt(1, categories.length - 1))
+      .fill({})
+      .map(() => categories[getRandomInt(0, categories.length - 1)]))]
+    ,
     description: shuffle(sentences).slice(1, 5).join(` `),
     picture: getPictureFileName(getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)),
     title: TITLES[getRandomInt(0, TITLES.length - 1)],
-    type: OfferType[Object.keys(OfferType)[Math.floor(Math.random() * Object.keys(OfferType).length)]],
+    type: OfferType[Object.keys(OfferType)[getRandomInt(0, Object.keys(OfferType).length)]],
     sum: getRandomInt(SumRestrict.MIN, SumRestrict.MAX),
   }))
 );
@@ -85,12 +91,18 @@ module.exports = {
 
     const [count] = args;
     const countOffer = Number.parseInt(count, 10) || DEFAULT_COUNT;
-    const content = JSON.stringify(generateOffers(countOffer, titles, categories, sentences));
-    try {
-      await fs.writeFile(FILE_NAME, content);
-      console.info(chalk.green(`Operation success. File created.`));
-    } catch (err) {
-      console.error(chalk.red(`Can't write data to file...`));
+    if (countOffer <= 1000) {
+      const content = JSON.stringify(generateOffers(countOffer, titles, categories, sentences));
+      try {
+        await fs.writeFile(FILE_NAME, content);
+        console.info(chalk.green(`Operation success. File created.`));
+      } catch (err) {
+        console.error(chalk.red(`Can't write data to file...`));
+        process.exit(ExitCode.error);
+      }
+    } else {
+      console.error(chalk.red(`Не больше 1000 публикаций`));
+      process.exit(ExitCode.error);
     }
   }
 };
