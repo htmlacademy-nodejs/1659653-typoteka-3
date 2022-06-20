@@ -98,11 +98,11 @@ module.exports = {
         console.info(chalk.green(`Operation success. File created.`));
       } catch (err) {
         console.error(chalk.red(`Can't write data to file...`));
-        process.exit(ExitCode.error);
+        process.exit(ExitCode.ERROR);
       }
     } else {
       console.error(chalk.red(`Не больше 1000 публикаций`));
-      process.exit(ExitCode.error);
+      process.exit(ExitCode.ERROR);
     }
   }
 };
