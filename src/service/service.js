@@ -4,7 +4,6 @@ const {Cli} = require(`./cli`);
 const {
   DEFAULT_COMMAND,
   USER_ARGV_INDEX,
-  ExitCode
 } = require(`../constants`);
 
 
