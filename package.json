@@ -1,0 +1,29 @@
+{
+  "name": "typoteka",
+  "description": "Типотека",
+  "version": "1.0.0",
+  "main": "./src/service/service.js",
+  "devDependencies": {
+    "eslint": "8.14.0",
+    "eslint-config-htmlacademy": "0.6.0",
+    "nodemon": "2.0.16"
+  },
+  "scripts": {
+    "test": "npm run eslint",
+    "eslint": "eslint --ext .js src/",
+    "start": "nodemon ./src/service/service.js --server 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ViktorVinokurov/1659653-typoteka-3.git"
+  },
+  "author": "Vinokurov Viktor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ViktorVinokurov/1659653-typoteka-3/issues"
+  },
+  "homepage": "https://github.com/ViktorVinokurov/1659653-typoteka-3#readme",
+  "dependencies": {
+    "chalk": "4.1.2"
+  }
+}
