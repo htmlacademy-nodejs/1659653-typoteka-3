@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const chalk = require('chalk');
 
 const DEFAULT_PORT = 8080;
 
@@ -13,4 +14,9 @@ app.use('/my', myRouter);
 app.use('/articles', articlesRouter);
 
 // Start server
-app.listen(DEFAULT_PORT);
+try {
+  app.listen(DEFAULT_PORT);
+} catch (e) {
+  console.error(chalk.red(e));
+}
+
