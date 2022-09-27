@@ -1,7 +1,7 @@
 'use strict';
-const { getRandomInt, shuffle } = require('../../utils');
+const {getRandomInt, shuffle} = require(`../../utils`);
 const fs = require(`fs`).promises;
-const chalk = require('chalk');
+const chalk = require(`chalk`);
 const {
   ExitCode
 } = require(`../../constants`);
@@ -10,7 +10,7 @@ const FILE_TITLES_PATH = `../../data/titles.txt`;
 const FILE_CATEGORIES_PATH = `../../data/categories.txt`;
 
 const DEFAULT_COUNT = 1;
-const DEFAULT_COMMAND = '--version';
+
 const FILE_NAME = `mocks.json`;
 
 const TITLES = [
@@ -19,28 +19,6 @@ const TITLES = [
   `Продам отличную подборку фильмов на VHS`,
   `Куплю антиквариат`,
   `Куплю породистого кота`,
-];
-
-const SENTENCES = [
-  `Товар в отличном состоянии.`,
-  `Пользовались бережно и только по большим праздникам.`,
-  `Продаю с болью в сердце...`,
-  `Бонусом отдам все аксессуары.`,
-  `Даю недельную гарантию.`,
-  `Если товар не понравится — верну всё до последней копейки.`,
-  `Это настоящая находка для коллекционера!`,
-  `Если найдёте дешевле — сброшу цену.`,
-  `Таких предложений больше нет!`,
-  `При покупке с меня бесплатная доставка в черте города.`,
-];
-
-const CATEGORIES = [
-  `Книги`,
-  `Разное`,
-  `Посуда`,
-  `Игры`,
-  `Животные`,
-  `Журналы`,
 ];
 
 const OfferType = {
@@ -61,8 +39,8 @@ const PictureRestrict = {
 const getPictureFileName = (number) => `item${ number.toString().padStart(2, 0) }.jpg`;
 const readContent = async (filePath) => {
   try {
-    const content = await fs.readFile(filePath, 'utf-8');
-    return content.trim().split('\n');
+    const content = await fs.readFile(filePath, `utf-8`);
+    return content.trim().split(`\n`);
   } catch (e) {
     console.error(chalk.red(e));
     return [];
@@ -73,8 +51,7 @@ const generateOffers = (count, titles, categories, sentences) => (
   Array(count).fill({}).map(() => ({
     category: [...new Set(Array(getRandomInt(1, categories.length - 1))
       .fill({})
-      .map(() => categories[getRandomInt(0, categories.length - 1)]))]
-    ,
+      .map(() => categories[getRandomInt(0, categories.length - 1)]))],
     description: shuffle(sentences).slice(1, 5).join(` `),
     picture: getPictureFileName(getRandomInt(PictureRestrict.MIN, PictureRestrict.MAX)),
     title: TITLES[getRandomInt(0, TITLES.length - 1)],
