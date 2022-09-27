@@ -24,9 +24,10 @@ app.use(`/my`, myRouter);
 app.use(`/articles`, articlesRouter);
 
 // Start server
-try {
-  app.listen(DEFAULT_PORT);
-} catch (e) {
-  console.error(chalk.red(e));
-}
+app.listen(DEFAULT_PORT, (err) => {
+  if (err) {
+    return console.error(chalk.red(`Ошибка запуска: ${ err.message }`));
+  }
+  return console.info(chalk.blue(`Сервер запущен на порту ${ DEFAULT_PORT }`))
+})
 
