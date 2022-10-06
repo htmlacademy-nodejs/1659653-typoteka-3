@@ -24,10 +24,11 @@ app.use(`/my`, myRouter);
 app.use(`/articles`, articlesRouter);
 
 // Start server
-app.listen(DEFAULT_PORT, (err) => {
-  if (err) {
-    return console.error(chalk.red(`Ошибка запуска: ${ err.message }`));
-  }
-  return console.info(chalk.blue(`Сервер запущен на порту ${ DEFAULT_PORT }`))
+app.listen(DEFAULT_PORT)
+  .on(`listening`, () => {
+  console.info(chalk.green(`Успешное соединение на ${ port }`));
 })
+  .on(`error`, ({ message }) => {
+    console.error(chalk.red(`Ошибка при создании сервера: ${ message }`));
+  });
 
